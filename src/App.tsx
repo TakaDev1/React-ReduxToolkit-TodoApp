@@ -11,10 +11,10 @@ import store from "./app/Store";
 function App() {
   return (
     <>
-      <div>
+      <div className="bg-gray-800 min-h-screen flex flex-col items-center justify-center">
         <h1>React-ReduxToolkit-TodoApp</h1>
         <Provider store={store}>
-          <div>
+          <div className="w-1/3 mx-auto">
             <TodoList />
             <AddTodo />
           </div>

@@ -7,12 +7,17 @@ const TodoList = () => {
   const todos = useSelector((state: { todos: TodoType[] }) => state.todos);
   const dispatch = useDispatch();
   return (
-    <div>
+    <div className="my-10">
       <ul>
         {todos.map((todo) => (
-          <li key={todo.id}>
+          <li key={todo.id} className="bg-gray-500 text-white rounded py-1 flex justify-around ">
             <span onClick={() => dispatch(toggleTodo(todo.id))}>{todo.text}</span>
-            <button onClick={() => dispatch(removeTodo(todo.id))}>×</button>
+            <button
+              onClick={() => dispatch(removeTodo(todo.id))}
+              className="bg-red-800 w-15 rounded cursor-pointer hover:opacity-80 "
+            >
+              ×
+            </button>
           </li>
         ))}
       </ul>

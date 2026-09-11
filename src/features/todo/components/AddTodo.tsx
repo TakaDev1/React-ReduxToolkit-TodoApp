@@ -17,9 +17,19 @@ const AddTodo = () => {
     setText("");
   };
   return (
-    <div>
-      <input type="text" value={text} onChange={handleText} />
-      <button onClick={handleAddTodo}>追加</button>
+    <div className="flex justify-around">
+      <input
+        type="text"
+        value={text}
+        onChange={handleText}
+        className="border rounded-lg mr-5 text-white"
+      />
+      <button
+        onClick={handleAddTodo}
+        className="bg-blue-500 text-white w-1/5 rounded-full hover:opacity-80 cursor-pointer"
+      >
+        追加
+      </button>
     </div>
   );
 };
