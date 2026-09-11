@@ -1,32 +1,113 @@
-# React + TypeScript + Vite
+# React-ReduxToolkit-TodoApp
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+React + TypeScript + Redux Toolkitを使用して、Todoの状態管理を実装した練習用アプリです。
 
-Currently, two official plugins are available:
+## 概要
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Redux Toolkitの`createSlice`を使用してTodoを管理します。
 
-## React Compiler
+Todoは以下の操作に対応しています。
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+* Todoの追加
+* Todoの完了状態の切り替え
+* Todoの削除
 
-## Expanding the Oxlint configuration
+## 使用技術
 
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
+* React
+* TypeScript
+* Redux Toolkit
+* React Redux
+* Tailwind CSS
+* uuid
 
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
+## 主な機能
+
+### Todo追加
+
+入力したテキストからTodoを追加します。
+
+Todo追加時には`uuid`を使用して一意なIDを生成します。
+
+### Todo完了切り替え
+
+Todoをクリックすると`completed`の状態を切り替えます。
+
+完了したTodoには取り消し線を表示します。
+
+### Todo削除
+
+削除ボタンをクリックすると対象のTodoを削除します。
+
+## Redux構成
+
+`createSlice`を使用してTodoの状態とReducerを管理しています。
+
+```text
+todosSlice
+├── addTodo
+├── toggleTodo
+└── removeTodo
 ```
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+`store.ts`では作成したReducerをRedux Storeに登録しています。
+
+```text
+TodoType
+    ↓
+todosSlice
+    ↓
+store
+    ↓
+Provider
+    ↓
+AddTodo / TodoList
+```
+
+## データ構造
+
+Todoは以下の型で管理します。
+
+```ts
+type TodoType = {
+  id: string;
+  text: string;
+  completed: boolean;
+};
+```
+
+## ディレクトリ構成
+
+```text
+src/
+├── app/
+│   └── store.ts
+│
+├── features/
+│   └── todo/
+│       ├── components/
+│       │   ├── AddTodo.tsx
+│       │   └── TodoList.tsx
+│       │
+│       ├── reducers/
+│       │   └── TodoSlice.ts
+│       │
+│       └── types/
+│           └── TodoType.ts
+│
+├── App.tsx
+├── main.tsx
+└── index.css
+```
+
+## Redux Toolkitの学習ポイント
+
+* `configureStore`
+* `createSlice`
+* `PayloadAction`
+* `useSelector`
+* `useDispatch`
+* Redux StoreとReactコンポーネントの連携
+* ReducerによるState更新
+* Action Creator
+
