@@ -18,7 +18,7 @@ const AddTodo = () => {
   };
   return (
     <div>
-      <input type="text" value={text} onChange={() => handleText} />
+      <input type="text" value={text} onChange={handleText} />
       <button onClick={handleAddTodo}>追加</button>
     </div>
   );
